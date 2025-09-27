@@ -168,3 +168,217 @@ Caching improves performance and reduces DB load.
 - Profile and monitor using tools like JVisualVM or JProfiler.
 
 ---
+
+## 🟠 Extended Advanced Questions (21 - 50)
+
+### 21. What are Java Streams and why are they useful?
+**Answer:**  
+Streams allow functional-style processing of collections. They make operations like filtering, mapping, and reducing more concise and parallelizable. For example, `list.stream().filter(x -> x > 10).collect(Collectors.toList());`.
+
+---
+
+### 22. Difference between parallelStream() and stream()?
+**Answer:**  
+`stream()` is sequential.  
+`parallelStream()` divides tasks into multiple threads for parallel execution.  
+Parallel streams improve performance but may cause issues if tasks are not thread-safe.
+
+---
+
+### 23. What is immutability in Java and why is it important?
+**Answer:**  
+Immutable objects cannot be modified after creation. For example, `String` is immutable. Immutability is important for thread safety and caching, as state cannot be changed unexpectedly.
+
+---
+
+### 24. What are Java Records?
+**Answer:**  
+Records (introduced in Java 14) are a concise way to define immutable data classes. Instead of writing boilerplate getters, equals, and hashCode, records generate them automatically.
+
+---
+
+### 25. Explain Functional Interfaces in Java.
+**Answer:**  
+A functional interface has exactly one abstract method. Examples: `Runnable`, `Callable`, `Comparator`.  
+They are used with lambda expressions and method references.
+
+---
+
+### 26. What are default and static methods in interfaces?
+**Answer:**  
+- **Default methods** allow interfaces to provide implementations.  
+- **Static methods** belong to the interface itself.  
+This reduces the need for abstract classes and makes API evolution easier.
+
+---
+
+### 27. Explain the difference between Thread and Runnable.
+**Answer:**  
+`Thread` is a class, `Runnable` is an interface.  
+We usually implement `Runnable` because it allows flexibility and avoids multiple inheritance issues.
+
+---
+
+### 28. What is ThreadPoolExecutor?
+**Answer:**  
+ThreadPoolExecutor manages a pool of worker threads. Instead of creating new threads for every task, tasks are submitted to a queue, improving performance in concurrent applications.
+
+---
+
+### 29. What is the difference between Callable and Runnable?
+**Answer:**  
+- `Runnable` doesn’t return a result or throw checked exceptions.  
+- `Callable` returns a result and can throw exceptions.  
+
+---
+
+### 30. Explain CompletableFuture in Java.
+**Answer:**  
+`CompletableFuture` represents an asynchronous computation. It allows chaining with `.thenApply()`, `.thenAccept()`, and combining tasks with `.thenCombine()`.
+
+---
+
+### 31. What is the difference between Monolith and Microservices architecture?
+**Answer:**  
+- Monolith: One large application, harder to scale and deploy.  
+- Microservices: Small independent services, easier to scale, but more complex infrastructure.
+
+---
+
+### 32. What is API Gateway in microservices?
+**Answer:**  
+API Gateway acts as a single entry point for clients, handling authentication, routing, load balancing, and rate limiting.
+
+---
+
+### 33. How do you handle inter-service communication in microservices?
+**Answer:**  
+- **Synchronous**: REST or gRPC.  
+- **Asynchronous**: Messaging queues like Kafka or RabbitMQ.  
+
+---
+
+### 34. Explain eventual consistency.
+**Answer:**  
+In distributed systems, eventual consistency means that while data may not be consistent at all times, it will become consistent eventually. Used in systems like Cassandra or DynamoDB.
+
+---
+
+### 35. How do you scale databases in backend systems?
+**Answer:**  
+- Vertical scaling (bigger servers).  
+- Horizontal scaling (sharding, replication).  
+- Using caching layers (Redis, Memcached).  
+
+---
+
+### 36. What is CAP theorem?
+**Answer:**  
+CAP theorem states that in distributed systems, you can only guarantee two of the three:  
+- **Consistency**  
+- **Availability**  
+- **Partition tolerance**
+
+---
+
+### 37. Explain ACID properties.
+**Answer:**  
+- **Atomicity**: All or nothing transactions.  
+- **Consistency**: Transactions bring DB from one valid state to another.  
+- **Isolation**: Concurrent transactions don’t affect each other.  
+- **Durability**: Once committed, data is permanent.
+
+---
+
+### 38. Explain BASE properties in NoSQL.
+**Answer:**  
+- **Basically Available**  
+- **Soft state**  
+- **Eventual consistency**  
+
+Used in distributed NoSQL systems.
+
+---
+
+### 39. What is Lazy Loading in Hibernate?
+**Answer:**  
+Lazy loading defers object initialization until it’s needed. Improves performance by avoiding unnecessary DB calls.
+
+---
+
+### 40. Explain the difference between Eager and Lazy fetching.
+**Answer:**  
+- **Eager**: Fetches associated objects immediately.  
+- **Lazy**: Fetches associated objects only when needed.  
+
+---
+
+### 41. What are Hibernate Caching levels?
+**Answer:**  
+- **First level cache**: Session-scoped.  
+- **Second level cache**: SessionFactory-scoped, supports Ehcache, Redis.  
+- **Query cache**: Stores results of queries.
+
+---
+
+### 42. How does Spring Security handle authentication?
+**Answer:**  
+It uses filters, authentication providers, and user details service. Authentication can be done with username/password, JWT, or OAuth2.
+
+---
+
+### 43. Difference between Authentication and Authorization?
+**Answer:**  
+- **Authentication**: Verifying identity (login).  
+- **Authorization**: Deciding what the user can access (roles, permissions).  
+
+---
+
+### 44. What is CSRF and how do you prevent it?
+**Answer:**  
+CSRF is Cross-Site Request Forgery, where malicious sites trick users into submitting requests.  
+Prevention: CSRF tokens, SameSite cookies.
+
+---
+
+### 45. What is XSS and how do you prevent it?
+**Answer:**  
+XSS is Cross-Site Scripting, injecting malicious scripts into web pages.  
+Prevention: Input validation, escaping output, using libraries like OWASP ESAPI.
+
+---
+
+### 46. How does JWT authentication work?
+**Answer:**  
+JWT is a token containing user claims. Server validates it using a secret key. It allows stateless authentication without storing sessions.
+
+---
+
+### 47. Explain rate limiting in APIs.
+**Answer:**  
+Rate limiting restricts the number of requests per client. Implemented using token bucket, leaky bucket, or sliding window algorithms. Prevents abuse and ensures fair usage.
+
+---
+
+### 48. How do you monitor backend services?
+**Answer:**  
+Using tools like Prometheus, Grafana, ELK stack, or Zipkin. Monitor logs, metrics, tracing, and alerts for system health.
+
+---
+
+### 49. Explain Circuit Breaker Pattern.
+**Answer:**  
+Circuit breaker prevents cascading failures in microservices. If a service keeps failing, the breaker opens, and requests are stopped temporarily. Netflix Hystrix is a common implementation.
+
+---
+
+### 50. What are some best practices for writing scalable Java backend code?
+**Answer:**  
+- Use dependency injection.  
+- Avoid tight coupling.  
+- Apply caching.  
+- Use async processing when possible.  
+- Write tests and monitor performance.  
+- Follow SOLID principles.
+
+---
